@@ -21,33 +21,33 @@ keywords: windows iot, Windows Device Portal, remote, device portal
 > Live kernel debug is currently failing for ARM devices. We are working to get this fixed.
 
 > [!IMPORTANT]
-> If you are building an open retail device for commercial deployment to a "specific/limited installation" (i.e. factory or retail store) where the end-user does the final configuration and you document your customers that they must [obtain a certificate for WDP and install it on both WDP and connecting browsers and passwords are changed on WDP](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-ssl), then using WDP in this narrow commercial instance is acceptable. Retail images in this scenario should still *not* include IOT_TOOLKIT, but should use the IOT_WEBBEXTN package to pull in WDP. 
+> If you are building an open retail device for commercial deployment to a "specific/limited installation" (e.g. factory or retail store) where the end-user does the final configuration and you notify your customers that they must [obtain a certificate for WDP and install it on both WDP and connecting browsers and passwords are changed on WDP](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-ssl), then using WDP in this narrow commercial instance is acceptable. Retail images in this scenario should still *not* include IOT_TOOLKIT, but should use the IOT_WEBBEXTN package to pull in WDP. 
 
 ## Shared Documentation
 WDP is a developer tool shared among all Windows 10 devices. Each product has its own unique features, but the core functionality is the same.
 Documentation for the main features are found on the [Windows Device Portal overview page](https://msdn.microsoft.com/windows/uwp/debug-test-perf/device-portal). The rest of the documentation below will be IoT specific.
 
-## Set up
+## Setup
 
-There are two ways to go get the Windows Device Portal up and running.
+There are two ways to get the Windows Device Portal up and running.
 
 ### 1. Windows 10 IoT Dashboard
 
 First, you'll want to download the [Windows 10 IoT Dashboard](https://docs.microsoft.com/windows/iot-core/connect-your-device/iotdashboard), a developer tool that makes it easy to set up new devices. Once you've used the Dashboard to flash a Windows 10 IoT Core image onto your device, check that your device shows up under "My devices". 
 
-From there, use the ellipses under "Actions" to select "Open in Device Portal". From there, you'll be taken to the Device Portal authentication page where, unless you changed the credentials initially, the default credentials are: 
+From there, use the ellipsis under "Actions" to select "Open in Device Portal". From there, you'll be taken to the Device Portal authentication page where, unless you changed the credentials initially, the default credentials are: 
 
-    Username: `Administrator`<br/>
+    Username: `Administrator`
     Password: `p@ssw0rd`
  
- ### 2. Browser
+### 2. Browser
 If you cannot find your device in the dashboard or prefer to skip using the dashboard, you can also open the Device Portal by entering the IP address of your device plus `:8080` onto the end. When done correctly, it should look something like this:
 
 
    ![IoTDashboard View Devices](../media/deviceportal/Dashboard-Action.gif)
 
     
-## IoT specific features
+## IoT Specific Features
 
 ### Device Settings
 
@@ -60,7 +60,7 @@ IoT Core adds a checkbox to enable or disable the [on-screen keyboard](../develo
 Provides install/uninstall functionality for AppX packages and bundles on your device.
 ![App list](../media/DevicePortal/AppList.png)
 
-IoT Core is unique in that it only allows one foreground app to run at one time. The app list is modified to ensure that this is the case. Under the **STARTUP** column, you can select as many background applications to start by default, but can only set one foreground application.  
+IoT Core is unique in that it only allows one foreground app to run at a time. The app list is modified to ensure that this is the case. Under the **STARTUP** column, you can select as many background applications to start as you'd like, but can only select one foreground application.  
 
 ### App File Explorer
 
@@ -68,31 +68,31 @@ The app file explorer shows the directories that your apps can access.
 
 * CameraRoll is shared among all apps
 * Documents is shared among all apps
-* LocalAppData contains folders specific to each app. This folder will be the same name as your app and other apps cannot access it.
+* LocalAppData contains folders specific to each app. This folder will have the same name as your app and other apps cannot access it.
 
 ### Debugging
 
-#### Kernel dumps
+#### Kernel Dumps
 ![Debugging with kernel dumps](../media/DevicePortal/Debug1.png)
 
 Any system crashes will automatically be logged and available to view through the web management tool.  You can then download the kernel dump and try to figure out what's going on.
 
-#### Process dumps
+#### Process Dumps
 ![Debugging with process dumps](../media/DevicePortal/Debug2.png)
 
-This is similar to Live kernel dumps, but for the user mode processes. 
+This is similar to kernel dumps, but for the user mode processes. 
 Clicking the **download** button will cause a 'minidump', and the entire state of that process will be downloaded. This is good for debugging hanging processes.
 
-#### Kernel crash settings
+#### Kernel Crash Settings
 ![Kernel crash settings](../media/DevicePortal/Debug3.png)
 
 ### Bluetooth
-This page shows you all the bluetooth paired devices and all the devices which are discoverable. To pair with another Bluetooth device, put the device in pairing mode and wait for it to appear in the available devices list.  
+This page shows you all the bluetooth paired devices and all the devices that are discoverable. To pair with another Bluetooth device, put the device in pairing mode and wait for it to appear in the available devices list.  
 ![Bluetooth device list](../media/DevicePortal/Bluetooth.png)
 
-Click on **Pair link** to pair the device. If the device requires a PIN for pairing, it will pop-up a message box displaying the PIN. Once the device is paired, it will show up in the Paired devices list. You can un-pair the device by clicking on **Remove**. 
+Click on **Pair link** to pair the device. If the device requires a PIN for pairing, it will pop up a message box displaying the PIN. Once the device is paired, it will show up in the Paired devices list. You can un-pair the device by clicking on **Remove**. 
 
-Once you navigate to the Bluetooth page, your device will be discoverable by other devices. You can also find it from your PC/Phone and pair it from there.
+Once you navigate to the Bluetooth page, your device will be discoverable by other devices. You can also find it from your PC/phone and pair it from there.
 
 More information on bluetooth can be found on the [bluetooth page](https://go.microsoft.com/fwlink/?linkid=823223).
 
@@ -112,7 +112,7 @@ To use this feature, your Windows 10 IoT Device needs to have access to the inte
 The SoftAP Settings allow you to control whether or not your device's SoftAP is enabled.  It also provides a means for configuring your SoftAP's SSID and the WPA2-PSK key which are necessary to connect the SoftAP from another device.
 
 **AllJoyn Onboarding Settings**
-The AllJoyn Onboarding Settings allow you to control whether or not your device's Wi-Fi connection can configured through your device's AllJoyn Onboarding Producer.  When a separate device running an AllJoyn Onboarding Consumer application connects to your Windows 10 IoT SoftAP, the AllJoyn Onboarding Consumer application can be used to configure your IoT device's Wi-Fi adapter.  When enabled, the AllJoyn Onboarding Producer app (IoTOnboarding) uses the ECDHE_NULL authentication method. 
+The AllJoyn Onboarding Settings allow you to control whether or not your device's Wi-Fi connection can be configured through your device's AllJoyn Onboarding Producer.  When a separate device running an AllJoyn Onboarding Consumer application connects to your Windows 10 IoT SoftAP, the AllJoyn Onboarding Consumer application can be used to configure your IoT device's Wi-Fi adapter.  When enabled, the AllJoyn Onboarding Producer app (IoTOnboarding) uses the ECDHE_NULL authentication method. 
 
 > [!NOTE]
 > To use AllJoyn Onboarding with Windows 10 IoT builds 10.0.14393 or earlier requires an update to the <strong>IotOnboarding</strong> 
@@ -122,8 +122,8 @@ sample which may be [downloaded here](https://github.com/ms-iot/samples).
 ![Onboarding onto ICS](../media/DevicePortal/OnboardingICS.png)
 
 > [!NOTE]
-> Access point adapter is the WiFi adapter that act as a WiFi access point (it usually has an IP address like 192.168.137.1).
-> Shared network adapter is the adapter that connects to Internet (e.g.: Ethernet adapter).
+> Access point adapter is the WiFi adapter that acts as a WiFi access point (it usually has an IP address like 192.168.137.1).
+> Shared network adapter is the adapter that connects to Internet (e.g. Ethernet adapter).
 
 ![Onboard onto Soft AP](../media/DevicePortal/OnboardingSoftAP.png)
 
@@ -132,18 +132,18 @@ sample which may be [downloaded here](https://github.com/ms-iot/samples).
 > adapter. The SoftAP passphrase must be between 8 and 63 ASCII characters.
 
 
-### TPM configuration
-The Trusted Platform Module (TPM) is a cryptographic coprocessor including capabilities for random number generation, secure generation of cryptographic keys and limitation of their use. It also includes capabilities such as remote attestation and sealed storage. To learn about the TPM and security on IoT Core, visit the [Building secure devices](../secure-your-device/BuildingSecureDevices.md) page and the [TPM](../secure-your-device/TPM.md) page.
+### TPM Configuration
+The Trusted Platform Module (TPM) is a cryptographic coprocessor including capabilities for random number generation, secure generation of cryptographic keys and limitation of their use. It also includes capabilities such as remote attestation and sealed storage. To learn more about the TPM and security on IoT Core, visit the [Building secure devices](../secure-your-device/BuildingSecureDevices.md) page and the [TPM](../secure-your-device/TPM.md) page.
 
 > [!IMPORTANT]
-> Limpet.exe used to be part of Windows IoT Core. Starting with October 2018, it is now available as an open source porject at [https://github.com/ms-iot/azure-dm-client](https://github.com/ms-iot/azure-dm-client).
+> Limpet.exe used to be part of Windows IoT Core. Starting in October 2018, it is now available as an open source porject at [https://github.com/ms-iot/azure-dm-client](https://github.com/ms-iot/azure-dm-client).
 
 To make testing easier, we have a non-signed pre-built version of Limpet.exe available and can be downloaded right from WDP. You just need to go the 'TPM Configuration' tab and click the 'Install Latest' button. 
 
 > [!NOTE]
 > This version of Limpet.exe should not be shipped with your final product. Instead, you need to build the open source project, sign it, and package it with your image.
 
-### Azure Clients configuration
+### Azure Clients Configuration
 
 IoT devices can be remotely managed through cloud services. Azure provides a very rich set of services to enable such scenarios. We have created a device management client that complements Azure's Device Provisioning Service (DPS) and Azure's IoT Hub service on the Windows platform and which also exposes several Windows manageability features.
 
@@ -160,10 +160,10 @@ The Windows IoT Remote Server allows users to see what their device is displayin
 
 ## Additional Information 
 
-### Changing the default port
+### Changing The Default Port
  
 1. Launch powershell and [connect to your device.](../connect-your-device/PowerShell.md)
-2. Download [TakeRegistryOwnership](https://github.com/ms-iot/iot-utilities/tree/master/TakeRegistryOwnership) tool, build it, and copy it to your device. 
+2. Download the [TakeRegistryOwnership](https://github.com/ms-iot/iot-utilities/tree/master/TakeRegistryOwnership) tool, build it, and copy it to your device. 
 3. Take ownership of the registry key for the service by running
 
         .\TakeRegistryOwnership.exe MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\webmanagement\service
@@ -178,34 +178,33 @@ The Windows IoT Remote Server allows users to see what their device is displayin
 
 ### Using HTTPS 
 
-If you want to use HTTPS, first take the ownership of the registry key as described in previous section and set the HttpsPort and EncryptionMode registry keys as below and then restart the webmanagement service
+If you want to use HTTPS, first take the ownership of the registry key as described in the previous section and set the HttpsPort and EncryptionMode registry keys as below and then restart the webmanagement service
 
         reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\webmanagement\service /v EncryptionMode /t REG_DWORD /d 0x3 /f
         reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\webmanagement\service /v HttpsPort /t REG_DWORD /d <your port number> /f
         net stop webmanagement ; net start webmanagement
 
-### Provisoning Device Portal with a custom SSL certificate
+### Provisoning Device Portal with a Custom SSL Certificate
 
 In the Windows 10 Creators Update, the Windows Device Portal added a way for device administrators to install a custom certificate for use in HTTPS communication.
 
 To learn more, [read the documentation under the Windows Device Portal docs](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-ssl). 
 
-### Crash Dump Settings for Capturing Memory Dump:
+### Crash Dump Settings for Capturing Memory Dump
 
 To capture a Full Memory Dump, do the following:
 
-1. Connect to a IoT device through WDP.
+1. Connect to an IoT device through WDP.
 
-2. From Debug -> Debug settings -> Kernel crash settings -> Crash dump type. 
+2. From "Debug -> Debug settings -> Kernel crash settings -> Crash dump type", select "Complete memory dump (in use memory)".
 
-3. Select: Complete memory dump (in use memory).
-    Make sure the device is rebooted for the setting to take effect. 
+3. Make sure the device is rebooted for the setting to take effect. 
     
-4. Verify  that `HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\CrashControl\CrashDumpEnabled` is set to 0x1.
+4. Verify that `HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\CrashControl\CrashDumpEnabled` is set to 0x1.
 
 5. Update `HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\CrashControl\DumpFileSize` to 0x0.
 
-6. Make sure you have enough space on the device for this Dump to be generated. You can configure the changing the DumpFile location from here:
+6. Make sure you have enough space on the device for this Dump to be generated. You can configure the DumpFile location from here:
     `HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\CrashControl\DumpFile`
 
 
